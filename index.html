@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Sansita+Swashed:wght@300..900&display=swap" rel="stylesheet">
+    <title>Formulário Simples</title>
+
+    <style>
+        body {
+            background-color: #89aed9;
+            color: darkblue;
+            font-family: "Mouse Memoirs", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            margin: 20px;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12)
+        }
+
+        form {
+            display: grid;
+            gap: 10px;
+        }
+
+        :hover button{
+          background-color: #286ffc;
+        }
+
+        input, button {
+            padding: 8px;
+            color: black;
+            background-color: lightblue;
+            border: 2px solid blue;
+            border-radius: 10px;
+        }
+
+        #resultado {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        h1 {
+          text-align: center;
+        }
+
+        section {
+          text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <h1>Formulário de Cadastro</h1>
+
+        <form id="formulario">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+
+            <label for="nascimento">Data de nascimento:</label>
+            <input type="date" id="nascimento" required>
+
+            <label for="cor">Cor preferida:</label>
+            <input type="color" id="cor" value="#000000">
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <section>
+            <h2>Dados preenchidos</h2>
+            <div id="resultado"></div>
+        </section>
+    </main>
+
+    <script>
+        const formulario = document.getElementById("formulario");
+        const resultado = document.getElementById("resultado");
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const nascimento = document.getElementById("nascimento").value;
+            const cor = document.getElementById("cor").value;
+
+            resultado.innerHTML = "";
+
+            const pNome = document.createElement("p");
+            pNome.textContent = "Nome: " + nome;
+
+            const pNascimento = document.createElement("p");
+            pNascimento.textContent = "Nascimento: " + nascimento;
+
+            const pCor = document.createElement("p");
+            pCor.textContent = "Cor preferida: " + cor;
+
+            const amostraCor = document.createElement("div");
+            amostraCor.style.backgroundColor = cor;
+            amostraCor.style.width = "100px";
+            amostraCor.style.height = "40px";
+            amostraCor.style.border = "1px solid black";
+
+            resultado.appendChild(pNome);
+            resultado.appendChild(pNascimento);
+            resultado.appendChild(pCor);
+            resultado.appendChild(amostraCor);
+        });
+    </script>
+
+</body>
+</html>
